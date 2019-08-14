@@ -1,6 +1,6 @@
 # OmniSharpOfflinePackager
 
-Simple app on .NET Core 3.0-preview7 to create [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) offline package on online PC.
+Simple app on .NET Core 3.0-preview8 to create [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) offline package on online PC.
 
 *todo appveyor badge*
 
@@ -16,12 +16,11 @@ Previous versions can be found on [releases](https://github.com/Gigas002/OmniSha
 
 - [Git](https://git-scm.com/downloads) – 2.22.0 or later
 - [Node.js](https://nodejs.org/en/download/current/) – 12.8.0 or later
-- **TEMP** [.NET Core 3.0 Runtime 3.0.0-preview7-27912-14](https://dotnet.microsoft.com/download/dotnet-core/3.0)*
+- **TEMP** *[.NET Core 3.0 Runtime 3.0.0-preview8-013656](https://dotnet.microsoft.com/download/dotnet-core/3.0)*
 
 ## Dependencies
 
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.6.0;
-
 
 ## Usage
 
