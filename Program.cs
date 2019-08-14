@@ -121,10 +121,10 @@ namespace OmniSharpOfflinePackager
         private static void ParseConsoleOptions(Options options)
         {
             if (string.IsNullOrWhiteSpace(options.PackageVersion))
-                throw new NullReferenceException(Strings.ParameterIsNullOrWhitespace(options.PackageVersion));
+                throw new NullReferenceException(Strings.ParameterIsNullOrWhitespace());
 
             if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath))
-                throw new NullReferenceException(Strings.ParameterIsNullOrWhitespace(options.OutputDirectoryPath));
+                throw new NullReferenceException(Strings.ParameterIsNullOrWhitespace());
 
             PackageVersion = options.PackageVersion;
 

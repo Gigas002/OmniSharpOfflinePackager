@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "OmniSharpOfflinePackager": {
-      "commandName": "Project",
-      "commandLineArgs": "--package-version 1.21.0 -t windows"
-    }
-  }
-}
