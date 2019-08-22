@@ -8,10 +8,10 @@ namespace OmniSharpOfflinePackager.Enums
 
         internal const string StringToComment = "        throw new Error('Do not build offline packages on windows. Runtime executables will not be marked executable in *nix packages.');";
 
-        internal const string MacOsPackageName = "csharp.1.21.0-darwin-x86_64.vsix";
+        internal static string GetMacOsPackageName(string packageVersion) => $"csharp.{packageVersion}-darwin-x86_64.vsix";
 
-        internal const string WindowsPackageName = "csharp.1.21.0-win32-x86_64.vsix";
+        internal static string GetWindowsPackageName(string packageVersion) => $"csharp.{packageVersion}-win32-x86_64.vsix";
 
-        internal const string LinuxPackageName = "csharp.1.21.0-linux-x86_64.vsix";
+        internal static string GetLinuxPackageName(string packageVersion) => $"csharp.{packageVersion}-linux-x86_64.vsix";
     }
 }

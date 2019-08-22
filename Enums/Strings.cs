@@ -2,6 +2,7 @@ using System.Diagnostics;
 
 namespace OmniSharpOfflinePackager.Enums
 {
+    //TODO: Move to Localization
     internal static class Strings
     {
         internal const string OsNotSupported = "Current OS is not supported";

@@ -13,21 +13,31 @@ namespace OmniSharpOfflinePackager
     {
         #region Properties
 
+        /// <summary>
+        /// Package version to create from repo.
+        /// </summary>
         private static string PackageVersion { get; set; }
 
+        /// <summary>
+        /// Show is were additional errors while parsing.
+        /// </summary>
         private static bool IsParsingErrors { get; set; }
 
+        /// <summary>
+        /// Directory to ready packages.
+        /// </summary>
         private static DirectoryInfo OutputDirectoryInfo { get; set; }
 
         #endregion
 
         private static async Task Main(string[] args)
         {
+            //Try parse console args.
             Parser.Default.ParseArguments<Options>(args)
                   .WithParsed(ParseConsoleOptions)
                   .WithNotParsed(error => IsParsingErrors = true);
 
-            //Some additional checks
+            //Additional check.
             if (IsParsingErrors) return;
 
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows) &&
@@ -35,51 +45,60 @@ namespace OmniSharpOfflinePackager
                 !RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 throw new NotSupportedException(Strings.OsNotSupported);
 
-            //Start the timer
+            //Start the timer.
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            //Start the work
-            await BuildPackage();
+            //Start the work.
+            await BuildPackage().ConfigureAwait(false);
 
-            //Stop timer and print info
+            //Stop timer and print info.
             stopwatch.Stop();
             Console.WriteLine(Strings.Done);
             Console.WriteLine(Strings.GetElapsedTimeString(stopwatch));
         }
 
+        /// <summary>
+        /// Builds the package.
+        /// </summary>
+        /// <returns></returns>
         private static async ValueTask BuildPackage()
         {
             //Clone repo
-            await GitProcess(Git.GetCloneString(PackageVersion));
+            await GitProcess(Git.GetCloneString(PackageVersion)).ConfigureAwait(false);
 
             //Instal dependencies
-            await NpmProcess(Npm.Install, OmniSharp.OmniSharpDirectoryPath);
+            await NpmProcess(Npm.Install, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
 
             //Comment string if packaging on windows
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                await CommentThrowStatement(OmniSharp.OfflinePackagingTasksPath, OmniSharp.StringToComment);
+                await CommentThrowStatement(OmniSharp.OfflinePackagingTasksPath, OmniSharp.StringToComment).ConfigureAwait(false);
 
             //Compile package
-            await NpmProcess(Npm.Compile, OmniSharp.OmniSharpDirectoryPath);
+            await NpmProcess(Npm.Compile, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
 
             //Create package
-            await NpmProcess(Npm.Gulp, OmniSharp.OmniSharpDirectoryPath);
+            await NpmProcess(Npm.Gulp, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
 
             //Move ready packages
             //Windows
-            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath, OmniSharp.WindowsPackageName),
-                      Path.Combine(OutputDirectoryInfo.FullName, OmniSharp.WindowsPackageName));
+            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath, OmniSharp.GetWindowsPackageName(PackageVersion)),
+                      Path.Combine(OutputDirectoryInfo.FullName, OmniSharp.GetWindowsPackageName(PackageVersion)));
 
             //Linux
-            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath, OmniSharp.LinuxPackageName),
-                      Path.Combine(OutputDirectoryInfo.FullName, OmniSharp.LinuxPackageName));
+            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath, OmniSharp.GetLinuxPackageName(PackageVersion)),
+                      Path.Combine(OutputDirectoryInfo.FullName, OmniSharp.GetLinuxPackageName(PackageVersion)));
 
             //OSX
-            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath, OmniSharp.MacOsPackageName),
-                      Path.Combine(OutputDirectoryInfo.FullName, OmniSharp.MacOsPackageName));
+            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath, OmniSharp.GetMacOsPackageName(PackageVersion)),
+                      Path.Combine(OutputDirectoryInfo.FullName, OmniSharp.GetMacOsPackageName(PackageVersion)));
         }
 
+        /// <summary>
+        /// Starts Git process.
+        /// </summary>
+        /// <param name="args">Git process's args.</param>
+        /// <returns></returns>
         private static async ValueTask GitProcess(string args) => await Task.Run(() =>
         {
             using Process process = new Process
@@ -93,8 +112,14 @@ namespace OmniSharpOfflinePackager
 
             process.Start();
             process.WaitForExit();
-        });
+        }).ConfigureAwait(false);
 
+        /// <summary>
+        /// Starts Npm process.
+        /// </summary>
+        /// <param name="args">Npm process's args.</param>
+        /// <param name="workingDirectory">Cloned repo's path.</param>
+        /// <returns></returns>
         private static async ValueTask NpmProcess(string args, string workingDirectory) => await Task.Run(() =>
         {
             using Process process = new Process
@@ -108,16 +133,26 @@ namespace OmniSharpOfflinePackager
 
             process.Start();
             process.WaitForExit();
-        });
+        }).ConfigureAwait(false);
 
+        /// <summary>
+        /// Comment throw statement in package code (when building on Windows only).
+        /// </summary>
+        /// <param name="offlinePackagingTasksPath">Path to OfflinePackagingTasks file.</param>
+        /// <param name="lookForString">String to find and comment.</param>
+        /// <returns></returns>
         private static async ValueTask CommentThrowStatement(string offlinePackagingTasksPath, string lookForString) =>
             await File.WriteAllLinesAsync(offlinePackagingTasksPath,
-                                          (await File.ReadAllLinesAsync(offlinePackagingTasksPath)).Select(readString =>
-                                                                                                               readString ==
-                                                                                                               lookForString
-                                                                                                                   ? $"//{readString}"
-                                                                                                                   : readString));
+                                          (await File.ReadAllLinesAsync(offlinePackagingTasksPath)
+                                                     .ConfigureAwait(false))
+                                         .Select(readString =>
+                                                     readString == lookForString ? $"//{readString}" : readString))
+                      .ConfigureAwait(false);
 
+        /// <summary>
+        /// Parses console options and checks them on errors.
+        /// </summary>
+        /// <param name="options">Options from command line.</param>
         private static void ParseConsoleOptions(Options options)
         {
             if (string.IsNullOrWhiteSpace(options.PackageVersion))
