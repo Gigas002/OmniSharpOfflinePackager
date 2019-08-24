@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Linq;
 using CommandLine;
 using OmniSharpOfflinePackager.Enums;
+using OmniSharpOfflinePackager.Localization;
 
 namespace OmniSharpOfflinePackager
 {
@@ -54,8 +55,9 @@ namespace OmniSharpOfflinePackager
 
             //Stop timer and print info.
             stopwatch.Stop();
-            Console.WriteLine(Strings.Done);
-            Console.WriteLine(Strings.GetElapsedTimeString(stopwatch));
+            Console.WriteLine(Strings.Done, Environment.NewLine, stopwatch.Elapsed.Days, stopwatch.Elapsed.Hours,
+                              stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds,
+                              stopwatch.Elapsed.Milliseconds);
         }
 
         /// <summary>
@@ -126,8 +128,8 @@ namespace OmniSharpOfflinePackager
             {
                 StartInfo = new ProcessStartInfo(nameof(Npm))
                 {
-                    Arguments = args, CreateNoWindow = true, RedirectStandardInput = false, RedirectStandardOutput = false,
-                    UseShellExecute = true, WorkingDirectory = workingDirectory
+                    Arguments = args, CreateNoWindow = true, RedirectStandardInput = true, RedirectStandardOutput = true,
+                    UseShellExecute = false, WorkingDirectory = workingDirectory
                 }
             };
 
@@ -156,10 +158,10 @@ namespace OmniSharpOfflinePackager
         private static void ParseConsoleOptions(Options options)
         {
             if (string.IsNullOrWhiteSpace(options.PackageVersion))
-                throw new NullReferenceException(Strings.ParameterIsNullOrWhitespace());
+                throw new NullReferenceException(Strings.CommandLineParameterIsNullOrWhitespace);
 
             if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath))
-                throw new NullReferenceException(Strings.ParameterIsNullOrWhitespace());
+                throw new NullReferenceException(Strings.CommandLineParameterIsNullOrWhitespace);
 
             PackageVersion = options.PackageVersion;
 
