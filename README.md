@@ -16,7 +16,6 @@ Previous versions can be found on [releases](https://github.com/Gigas002/OmniSha
 
 - [Git](https://git-scm.com/downloads) – 2.22.0 or later
 - [Node.js](https://nodejs.org/en/download/current/) – 12.8.0 or later
-- *[.NET Core 3.0 Runtime 3.0.0-preview8-28405-07](https://dotnet.microsoft.com/download/dotnet-core/3.0)*
 
 ## Dependencies
 
