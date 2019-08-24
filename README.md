@@ -1,6 +1,6 @@
 # OmniSharpOfflinePackager
 
-Simple app on .NET Core 3.0-preview8 to create [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) offline package on online PC.
+Simple app on **.NET Core 3.0** to create [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) offline package on online PC.
 
 *todo appveyor badge*
 
@@ -16,7 +16,7 @@ Previous versions can be found on [releases](https://github.com/Gigas002/OmniSha
 
 - [Git](https://git-scm.com/downloads) – 2.22.0 or later
 - [Node.js](https://nodejs.org/en/download/current/) – 12.8.0 or later
-- **TEMP** *[.NET Core 3.0 Runtime 3.0.0-preview8-013656](https://dotnet.microsoft.com/download/dotnet-core/3.0)*
+- *[.NET Core 3.0 Runtime 3.0.0-preview8-28405-07](https://dotnet.microsoft.com/download/dotnet-core/3.0)*
 
 ## Dependencies
 
@@ -24,10 +24,12 @@ Previous versions can be found on [releases](https://github.com/Gigas002/OmniSha
 
 ## Usage
 
-| Short |       Long        |          Description          | Required? |
-| :---: | :---------------: | :---------------------------: | :-------: |
-|       | --package-version |   Package version to create   |    Yes    |
-|  -o   |     --output      | Full path to output directory |    Yes    |
+| Short |       Long        |            Description             | Required? |
+| :---: | :---------------: | :--------------------------------: | :-------: |
+|       | --package-version |     Package version to create      |    Yes    |
+|  -o   |     --output      |   Full path to output directory    |    Yes    |
+|       |     --version     |          Current version           |           |
+|       |      --help       | Message about command line options |           |
 
 `--package-version` is a `string`, representing **omnisharp-vscode** extension version to create.
 
@@ -37,7 +39,9 @@ Simple example looks like this: `OmniSharpOfflinePackager --package-version 1.21
 
 ## Localization
 
-*todo?*
+Localizable strings are located in `Localization/Strings.resx` file. You can add your translation (e.g. added `Strings.Ru.resx`file) and create pull request.
+
+Currently, application is available on **English** and **Russian** languages.
 
 ## Contributing
 
