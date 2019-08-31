@@ -2,7 +2,7 @@
 
 Simple app on **.NET Core 3.0** to create [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) offline package on online PC.
 
-*todo appveyor badge*
+*todo appveyor badge...*
 
 ## Current version
 
