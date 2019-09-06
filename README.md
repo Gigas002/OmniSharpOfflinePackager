@@ -8,7 +8,7 @@ You can build project in **VS2019** (**16.2.4**+) or in **VSCode** (**1.38.0**+)
 
 Icon is made by [SimpleIcon](https://www.flaticon.com/authors/simpleicon) from [FlatIcon](https://www.flaticon.com).
 
-*todo appveyor badge...*
+[![Build status](https://ci.appveyor.com/api/projects/status/lsal8vau7s1jw1c7?svg=true)](https://ci.appveyor.com/project/Gigas002/omnisharpofflinepackager)
 
 ## Current version
 
