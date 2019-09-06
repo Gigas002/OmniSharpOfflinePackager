@@ -44,7 +44,7 @@ Simple example looks like this: `OmniSharpOfflinePackager --package-version 1.21
 
 ## Localization
 
-Localizable strings are located in `Localization/Strings.resx` file. You can add your translation (e.g. added `Strings.Ru.resx`file) and create pull request.
+Localizable strings are located in `Localization/Strings.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
 
 Currently, application is available on **English** and **Russian** languages.
 
