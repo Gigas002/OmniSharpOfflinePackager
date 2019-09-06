@@ -94,7 +94,10 @@ namespace OmniSharpOfflinePackager
             //Create package
             await NpmProcessAsync(Npm.Gulp, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
 
-            //Move ready packages
+            //Move ready packages if necessary
+
+            if (OutputDirectoryInfo == null) return;
+
             //Windows
             File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath, OmniSharp.GetWindowsPackageName(PackageVersion)),
                       Path.Combine(OutputDirectoryInfo.FullName, OmniSharp.GetWindowsPackageName(PackageVersion)));
@@ -171,22 +174,32 @@ namespace OmniSharpOfflinePackager
         /// <param name="options">Options from command line.</param>
         private static void ParseConsoleOptions(Options options)
         {
+            //Package version
             if (string.IsNullOrWhiteSpace(options.PackageVersion))
-                throw new NullReferenceException(Strings.CommandLineParameterIsNullOrWhitespace);
-
-            if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath))
-                throw new NullReferenceException(Strings.CommandLineParameterIsNullOrWhitespace);
+            {
+                Console.WriteLine(Strings.CommandLineParameterIsNullOrWhitespace);
+                IsParsingErrors = true;
+            }
 
             PackageVersion = options.PackageVersion;
+
+            //Output directory
+            if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath)) return;
 
             try
             {
                 OutputDirectoryInfo = new DirectoryInfo(options.OutputDirectoryPath);
                 OutputDirectoryInfo.Create();
+                OutputDirectoryInfo.Refresh();
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
+                Console.WriteLine(exception.Message);
+
+                #if DEBUG
+                Console.WriteLine(exception.InnerException?.Message);
+                #endif
+
                 IsParsingErrors = true;
             }
         }

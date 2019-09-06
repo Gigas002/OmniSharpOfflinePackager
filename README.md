@@ -27,16 +27,16 @@ Previous versions can be found on [releases](https://github.com/Gigas002/OmniSha
 
 | Short |       Long        |            Description             | Required? |
 | :---: | :---------------: | :--------------------------------: | :-------: |
-|       | --package-version |     Package version to create      |    Yes    |
-|  -o   |     --output      |   Full path to output directory    |    Yes    |
+|  -p   | --package-version |     Package version to create      |    Yes    |
+|  -o   |     --output      |   Full path to output directory    |    No     |
 |       |     --version     |          Current version           |           |
 |       |      --help       | Message about command line options |           |
 
 `--package-version` is a `string`, representing **omnisharp-vscode** extension version to create.
 
-`-o/--output` is a `string`, representing full path to ready **omnisharp-vscode** packages.
+`-o/--output` is a `string`, representing full path to ready **omnisharp-vscode** packages. If not set – ready packages are located in cloned repo’s directory.
 
-Simple example looks like this: `OmniSharpOfflinePackager --package-version 1.21.0 --output "C:/OmniSharpPackage"`.
+Simple example looks like this: `OmniSharpOfflinePackager --package-version 1.21.2 --output "C:/OmniSharpPackage"`.
 
 ## Localization
 
