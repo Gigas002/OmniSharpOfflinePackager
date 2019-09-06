@@ -79,14 +79,15 @@ namespace OmniSharpOfflinePackager
         private static async ValueTask BuildPackageAsync()
         {
             //Clone repo
-            await GitProcessAsync(Git.GetCloneString(PackageVersion)).ConfigureAwait(false);
+            await GitProcessAsync(await Git.GetCloneStringAsync(PackageVersion).ConfigureAwait(false)).ConfigureAwait(false);
 
             //Instal dependencies
             await NpmProcessAsync(Npm.Install, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
 
             //Comment string if packaging on windows
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                await CommentThrowStatementAsync(OmniSharp.OfflinePackagingTasksPath, OmniSharp.StringToComment).ConfigureAwait(false);
+                await CommentThrowStatementAsync(await OmniSharp.GetOfflinePackagingTasksPathAsync.ConfigureAwait(false),
+                                                 OmniSharp.StringToComment).ConfigureAwait(false);
 
             //Compile package
             await NpmProcessAsync(Npm.Compile, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
@@ -99,16 +100,20 @@ namespace OmniSharpOfflinePackager
             if (OutputDirectoryInfo == null) return;
 
             //Windows
-            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath, OmniSharp.GetWindowsPackageName(PackageVersion)),
-                      Path.Combine(OutputDirectoryInfo.FullName, OmniSharp.GetWindowsPackageName(PackageVersion)));
+            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath,
+                                   await OmniSharp.GetWindowsPackageNameAsync(PackageVersion).ConfigureAwait(false)),
+                      Path.Combine(OutputDirectoryInfo.FullName,
+                                   await OmniSharp.GetWindowsPackageNameAsync(PackageVersion).ConfigureAwait(false)));
 
             //Linux
-            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath, OmniSharp.GetLinuxPackageName(PackageVersion)),
-                      Path.Combine(OutputDirectoryInfo.FullName, OmniSharp.GetLinuxPackageName(PackageVersion)));
+            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath,
+                                   await OmniSharp.GetLinuxPackageNameAsync(PackageVersion).ConfigureAwait(false)),
+                      Path.Combine(OutputDirectoryInfo.FullName,
+                                   await OmniSharp.GetLinuxPackageNameAsync(PackageVersion).ConfigureAwait(false)));
 
             //OSX
-            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath, OmniSharp.GetMacOsPackageName(PackageVersion)),
-                      Path.Combine(OutputDirectoryInfo.FullName, OmniSharp.GetMacOsPackageName(PackageVersion)));
+            File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath, await OmniSharp.GetMacOsPackageNameAsync(PackageVersion).ConfigureAwait(false)),
+                      Path.Combine(OutputDirectoryInfo.FullName, await OmniSharp.GetMacOsPackageNameAsync(PackageVersion).ConfigureAwait(false)));
         }
 
         /// <summary>

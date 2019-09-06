@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace OmniSharpOfflinePackager.Enums
 {
     /// <summary>
@@ -13,7 +15,8 @@ namespace OmniSharpOfflinePackager.Enums
         /// <summary>
         /// Path to "offlinePackagingTasks.ts" file.
         /// </summary>
-        internal static string OfflinePackagingTasksPath => $"{OmniSharpDirectoryPath}/tasks/offlinePackagingTasks.ts";
+        /// <returns>e.g.: "{OmniSharpDirectoryPath}/tasks/offlinePackagingTasks.ts"</returns>
+        internal static ValueTask<string> GetOfflinePackagingTasksPathAsync => new ValueTask<string>($"{OmniSharpDirectoryPath}/tasks/offlinePackagingTasks.ts");
 
         /// <summary>
         /// String to comment in "offlinePackagingTasks.ts" file.
@@ -25,20 +28,23 @@ namespace OmniSharpOfflinePackager.Enums
         /// </summary>
         /// <param name="packageVersion">Created package version.</param>
         /// <returns>e.g.: csharp.1.21.2-darwin-x86_64.vsix</returns>
-        internal static string GetMacOsPackageName(string packageVersion) => $"csharp.{packageVersion}-darwin-x86_64.vsix";
+        internal static ValueTask<string> GetMacOsPackageNameAsync(string packageVersion) =>
+            new ValueTask<string>($"csharp.{packageVersion}-darwin-x86_64.vsix");
 
         /// <summary>
         /// Gets Windows package name.
         /// </summary>
         /// <param name="packageVersion">Created package version.</param>
         /// <returns>e.g.: csharp.1.21.2-win32-x86_64.vsix</returns>
-        internal static string GetWindowsPackageName(string packageVersion) => $"csharp.{packageVersion}-win32-x86_64.vsix";
+        internal static ValueTask<string> GetWindowsPackageNameAsync(string packageVersion) =>
+            new ValueTask<string>($"csharp.{packageVersion}-win32-x86_64.vsix");
 
         /// <summary>
         /// Gets Linux package name.
         /// </summary>
         /// <param name="packageVersion">Created package version.</param>
         /// <returns>e.g.: csharp.1.21.2-linux-x86_64.vsix</returns>
-        internal static string GetLinuxPackageName(string packageVersion) => $"csharp.{packageVersion}-linux-x86_64.vsix";
+        internal static ValueTask<string> GetLinuxPackageNameAsync(string packageVersion) =>
+            new ValueTask<string>($"csharp.{packageVersion}-linux-x86_64.vsix");
     }
 }
