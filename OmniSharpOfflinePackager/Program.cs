@@ -138,10 +138,12 @@ namespace OmniSharpOfflinePackager
         {
             using Process process = new Process
             {
+                //TODO: Fix UseShellExecute = false -> unable to run npm
+
                 StartInfo = new ProcessStartInfo(nameof(Npm))
                 {
-                    Arguments = args, CreateNoWindow = true, RedirectStandardInput = true, RedirectStandardOutput = true,
-                    UseShellExecute = false, WorkingDirectory = workingDirectory
+                    Arguments = args, CreateNoWindow = true, RedirectStandardInput = false, RedirectStandardOutput = false,
+                    UseShellExecute = true, WorkingDirectory = workingDirectory
                 }
             };
 
