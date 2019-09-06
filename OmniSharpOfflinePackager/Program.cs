@@ -51,7 +51,7 @@ namespace OmniSharpOfflinePackager
             stopwatch.Start();
 
             //Start the work.
-            await BuildPackage().ConfigureAwait(false);
+            await BuildPackageAsync().ConfigureAwait(false);
 
             //Stop timer and print info.
             stopwatch.Stop();
@@ -64,23 +64,23 @@ namespace OmniSharpOfflinePackager
         /// Builds the package.
         /// </summary>
         /// <returns></returns>
-        private static async ValueTask BuildPackage()
+        private static async ValueTask BuildPackageAsync()
         {
             //Clone repo
-            await GitProcess(Git.GetCloneString(PackageVersion)).ConfigureAwait(false);
+            await GitProcessAsync(Git.GetCloneString(PackageVersion)).ConfigureAwait(false);
 
             //Instal dependencies
-            await NpmProcess(Npm.Install, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
+            await NpmProcessAsync(Npm.Install, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
 
             //Comment string if packaging on windows
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                await CommentThrowStatement(OmniSharp.OfflinePackagingTasksPath, OmniSharp.StringToComment).ConfigureAwait(false);
+                await CommentThrowStatementAsync(OmniSharp.OfflinePackagingTasksPath, OmniSharp.StringToComment).ConfigureAwait(false);
 
             //Compile package
-            await NpmProcess(Npm.Compile, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
+            await NpmProcessAsync(Npm.Compile, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
 
             //Create package
-            await NpmProcess(Npm.Gulp, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
+            await NpmProcessAsync(Npm.Gulp, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
 
             //Move ready packages
             //Windows
@@ -101,7 +101,7 @@ namespace OmniSharpOfflinePackager
         /// </summary>
         /// <param name="args">Git process's args.</param>
         /// <returns></returns>
-        private static async ValueTask GitProcess(string args) => await Task.Run(() =>
+        private static async ValueTask GitProcessAsync(string args) => await Task.Run(() =>
         {
             using Process process = new Process
             {
@@ -122,7 +122,7 @@ namespace OmniSharpOfflinePackager
         /// <param name="args">Npm process's args.</param>
         /// <param name="workingDirectory">Cloned repo's path.</param>
         /// <returns></returns>
-        private static async ValueTask NpmProcess(string args, string workingDirectory) => await Task.Run(() =>
+        private static async ValueTask NpmProcessAsync(string args, string workingDirectory) => await Task.Run(() =>
         {
             using Process process = new Process
             {
@@ -143,7 +143,7 @@ namespace OmniSharpOfflinePackager
         /// <param name="offlinePackagingTasksPath">Path to OfflinePackagingTasks file.</param>
         /// <param name="lookForString">String to find and comment.</param>
         /// <returns></returns>
-        private static async ValueTask CommentThrowStatement(string offlinePackagingTasksPath, string lookForString) =>
+        private static async ValueTask CommentThrowStatementAsync(string offlinePackagingTasksPath, string lookForString) =>
             await File.WriteAllLinesAsync(offlinePackagingTasksPath,
                                           (await File.ReadAllLinesAsync(offlinePackagingTasksPath)
                                                      .ConfigureAwait(false))
