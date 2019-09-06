@@ -44,14 +44,26 @@ namespace OmniSharpOfflinePackager
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows) &&
                 !RuntimeInformation.IsOSPlatform(OSPlatform.Linux) &&
                 !RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                throw new NotSupportedException(Strings.OsNotSupported);
+            {
+                Console.WriteLine(Strings.OsNotSupported);
+
+                return;
+            }
 
             //Start the timer.
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
             //Start the work.
-            await BuildPackageAsync().ConfigureAwait(false);
+            try { await BuildPackageAsync().ConfigureAwait(false); }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+
+                #if DEBUG
+                Console.WriteLine(exception.InnerException?.Message);
+                #endif
+            }
 
             //Stop timer and print info.
             stopwatch.Stop();

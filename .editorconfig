@@ -97,6 +97,7 @@ resharper_space_around_arrow_op=true
 resharper_space_around_attribute_match_operator=true
 resharper_space_before_separator=true
 resharper_space_within_single_line_array_initializer_braces=true
+resharper_use_indent_from_vs=false
 resharper_wrap_enum_declaration=wrap_if_long
 resharper_wrap_multiple_type_parameter_constraints_style=wrap_if_long
 resharper_wrap_object_and_collection_initializer_style=wrap_if_long
@@ -218,3 +219,8 @@ resharper_use_deconstruction_on_parameter_highlighting=suggestion
 resharper_use_negated_pattern_matching_highlighting=suggestion
 resharper_use_null_propagation_when_possible_highlighting=suggestion
 resharper_wrong_indent_size_highlighting=hint
+
+[*.{appxmanifest,asax,ascx,aspx,build,config,cs,cshtml,csproj,css,dbml,discomap,dtd,htm,html,js,json,jsproj,jsx,lsproj,master,njsproj,nuspec,proj,props,proto,razor,resjson,resw,resx,skin,StyleCop,targets,tasks,ts,tsx,vb,vbproj,xaml,xamlx,xml,xoml,xsd}]
+indent_style=space
+indent_size=4
+tab_width=4
