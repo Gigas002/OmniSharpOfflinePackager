@@ -1,6 +1,8 @@
 # OmniSharpOfflinePackager
 
-Simple app on **.NET Core 3.0** to create [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) offline package on online PC.
+Simple app on **.NET Core 3.0** (**preview9**) to create [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) offline package on online PC.
+
+You can build project in **VS2019** (**16.2.4**+) or in **VSCode** (**1.38.0**+) with mentioned [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) extension (**1.21.2**+).
 
 *todo appveyor badge...*
 
