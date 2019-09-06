@@ -4,7 +4,7 @@ Simple app on **.NET Core 3.0** (**preview9**) to create [omnisharp-vscode](http
 
 You can build project in **VS2019** (**16.2.4**+) or in **VSCode** (**1.38.0**+) with mentioned [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) extension (**1.21.2**+).
 
-![icon](OmniSharpOfflinePackager/Resources/Icon.png)
+![icon](OmniSharpOfflinePackager/Resources/icon.png)
 
 Icon is made by [SimpleIcon](https://www.flaticon.com/authors/simpleicon).
 
