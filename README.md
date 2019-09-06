@@ -6,7 +6,7 @@ You can build project in **VS2019** (**16.2.4**+) or in **VSCode** (**1.38.0**+)
 
 ![icon](OmniSharpOfflinePackager/Resources/icon.png)
 
-Icon is made by [SimpleIcon](https://www.flaticon.com/authors/simpleicon).
+Icon is made by [SimpleIcon](https://www.flaticon.com/authors/simpleicon) from [FlatIcon](https://www.flaticon.com).
 
 *todo appveyor badge...*
 
