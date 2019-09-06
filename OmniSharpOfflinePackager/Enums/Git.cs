@@ -1,5 +1,8 @@
 namespace OmniSharpOfflinePackager.Enums
 {
+    /// <summary>
+    /// Git commands.
+    /// </summary>
     internal static class Git
     {
         /// <summary>
