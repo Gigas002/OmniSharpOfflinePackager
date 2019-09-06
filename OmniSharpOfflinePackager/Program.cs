@@ -79,25 +79,35 @@ namespace OmniSharpOfflinePackager
         private static async ValueTask BuildPackageAsync()
         {
             //Clone repo
+            Console.WriteLine(Strings.CloningTheRepo);
             await GitProcessAsync(await Git.GetCloneStringAsync(PackageVersion).ConfigureAwait(false)).ConfigureAwait(false);
 
             //Instal dependencies
+            Console.WriteLine(Strings.InstallingNpmDependencies);
             await NpmProcessAsync(Npm.Install, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
 
             //Comment string if packaging on windows
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                await CommentThrowStatementAsync(await OmniSharp.GetOfflinePackagingTasksPathAsync.ConfigureAwait(false),
-                                                 OmniSharp.StringToComment).ConfigureAwait(false);
+            {
+                Console.WriteLine(Strings.CommentingThrowStatement);
+                await
+                    CommentThrowStatementAsync(await OmniSharp.GetOfflinePackagingTasksPathAsync.ConfigureAwait(false),
+                                               OmniSharp.StringToComment).ConfigureAwait(false);
+            }
 
             //Compile package
+            Console.WriteLine(Strings.CompilingThePackage);
             await NpmProcessAsync(Npm.Compile, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
 
             //Create package
+            Console.WriteLine(Strings.CreatingThePackage);
             await NpmProcessAsync(Npm.Gulp, OmniSharp.OmniSharpDirectoryPath).ConfigureAwait(false);
 
             //Move ready packages if necessary
 
             if (OutputDirectoryInfo == null) return;
+
+            Console.WriteLine(Strings.MovingReadyPackages);
 
             //Windows
             File.Move(Path.Combine(OmniSharp.OmniSharpDirectoryPath,

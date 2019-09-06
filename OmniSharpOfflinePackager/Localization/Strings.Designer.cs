@@ -61,6 +61,15 @@ namespace OmniSharpOfflinePackager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cloning the repo....
+        /// </summary>
+        internal static string CloningTheRepo {
+            get {
+                return ResourceManager.GetString("CloningTheRepo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Command line parameter is null or white space.
         /// </summary>
         internal static string CommandLineParameterIsNullOrWhitespace {
@@ -70,11 +79,56 @@ namespace OmniSharpOfflinePackager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Commenting throw statement....
+        /// </summary>
+        internal static string CommentingThrowStatement {
+            get {
+                return ResourceManager.GetString("CommentingThrowStatement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compiling the package....
+        /// </summary>
+        internal static string CompilingThePackage {
+            get {
+                return ResourceManager.GetString("CompilingThePackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating the package....
+        /// </summary>
+        internal static string CreatingThePackage {
+            get {
+                return ResourceManager.GetString("CreatingThePackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time passed:{0}Days:{1} hours:{2} minutes:{3} seconds:{4} milliseconds:{5}.
         /// </summary>
         internal static string Done {
             get {
                 return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installing npm dependencies....
+        /// </summary>
+        internal static string InstallingNpmDependencies {
+            get {
+                return ResourceManager.GetString("InstallingNpmDependencies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moving ready packages....
+        /// </summary>
+        internal static string MovingReadyPackages {
+            get {
+                return ResourceManager.GetString("MovingReadyPackages", resourceCulture);
             }
         }
         

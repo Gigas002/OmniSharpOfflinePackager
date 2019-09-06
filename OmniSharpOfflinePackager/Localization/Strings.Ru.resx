@@ -117,11 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CloningTheRepo" xml:space="preserve">
+    <value>Клонируется репозиторий...</value>
+  </data>
   <data name="CommandLineParameterIsNullOrWhitespace" xml:space="preserve">
     <value>Аргумент командной строки пуст или равен null</value>
   </data>
+  <data name="CommentingThrowStatement" xml:space="preserve">
+    <value>Комментируется throw-строчка...</value>
+  </data>
+  <data name="CompilingThePackage" xml:space="preserve">
+    <value>Компиляция...</value>
+  </data>
+  <data name="CreatingThePackage" xml:space="preserve">
+    <value>Создаются готовые пакеты...</value>
+  </data>
   <data name="Done" xml:space="preserve">
     <value>Прошло времени:{0}Дней:{1} часов:{2} минут:{3} секунд:{4} миллисекунд:{5}</value>
+  </data>
+  <data name="InstallingNpmDependencies" xml:space="preserve">
+    <value>Устанавливаются зависимости npm...</value>
+  </data>
+  <data name="MovingReadyPackages" xml:space="preserve">
+    <value>Перемещение готовых пакетов...</value>
   </data>
   <data name="OsNotSupported" xml:space="preserve">
     <value>Текущая ОС не поддерживается</value>
