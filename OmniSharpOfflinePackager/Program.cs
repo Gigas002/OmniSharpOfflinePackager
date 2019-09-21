@@ -135,7 +135,7 @@ namespace OmniSharpOfflinePackager
         {
             using Process process = new Process
             {
-                StartInfo = new ProcessStartInfo(nameof(Git))
+                StartInfo = new ProcessStartInfo(nameof(Git).ToLowerInvariant())
                 {
                     Arguments = args, CreateNoWindow = true, RedirectStandardInput = true, RedirectStandardOutput = true,
                     UseShellExecute = false
@@ -158,7 +158,7 @@ namespace OmniSharpOfflinePackager
             {
                 //TODO: Fix UseShellExecute = false -> unable to run npm
 
-                StartInfo = new ProcessStartInfo(nameof(Npm))
+                StartInfo = new ProcessStartInfo(nameof(Npm).ToLowerInvariant())
                 {
                     Arguments = args, CreateNoWindow = true, RedirectStandardInput = false, RedirectStandardOutput = false,
                     UseShellExecute = true, WorkingDirectory = workingDirectory
