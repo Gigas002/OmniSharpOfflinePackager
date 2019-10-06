@@ -2,7 +2,7 @@
 
 Simple app on **.NET Core 3.0** to create [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) offline package on online PC. It’s just implemented into app [official guide to create offline package](https://github.com/OmniSharp/omnisharp-vscode/wiki/Installing-the-C%23-extension-to-a-computer-without-internet-connectivity#installing-on-a-computer-that-cannot-connect-to-the-internet).
 
-You can build project in **VS2019** (**16.3.0**+) or in **VSCode** (**1.38.1**+) with mentioned [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) extension (**1.21.3**+).
+You can build project in **VS2019** (**16.3.2**+) or in **VSCode** (**1.38.1**+) with mentioned [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) extension (**1.21.4**+).
 
 ![icon](OmniSharpOfflinePackager/Resources/icon.png)
 
