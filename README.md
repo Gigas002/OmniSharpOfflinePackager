@@ -8,7 +8,7 @@ You can build project in **VS2019** (**16.4.1**+) or in **VSCode** (**1.40.2**+)
 
 Icon is made by [SimpleIcon](https://www.flaticon.com/authors/simpleicon) from [FlatIcon](https://www.flaticon.com).
 
-[![Build status](https://ci.appveyor.com/api/projects/status/lsal8vau7s1jw1c7?svg=true)](https://ci.appveyor.com/project/Gigas002/omnisharpofflinepackager)
+[![Build status](https://ci.appveyor.com/api/projects/status/lsal8vau7s1jw1c7?svg=true)](https://ci.appveyor.com/project/Gigas002/omnisharpofflinepackager)[![Actions Status](https://github.com/Gigas002/OmniSharpOfflinePackager/workflows/.NET%20Core/badge.svg)](https://github.com/Gigas002/OmniSharpOfflinePackager/actions) 
 
 ## Current version
 
