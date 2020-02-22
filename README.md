@@ -2,13 +2,13 @@
 
 Simple app on **.NET Core 3.1** to create [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) offline package on online PC. It’s just implemented into app [official guide to create offline package](https://github.com/OmniSharp/omnisharp-vscode/wiki/Installing-the-C%23-extension-to-a-computer-without-internet-connectivity#installing-on-a-computer-that-cannot-connect-to-the-internet).
 
-You can build project in **VS2019** (**16.4.1**+) or in **VSCode** (**1.40.2**+) with mentioned [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) extension (**1.21.8**+).
+You can build project in **VS2019** (**16.4.5**+) or in **VSCode** (**1.41.1**+) with mentioned [omnisharp-vscode](https://github.com/OmniSharp/omnisharp-vscode) extension (**1.21.12**+).
 
 ![icon](OmniSharpOfflinePackager/Resources/icon.png)
 
 Icon is made by [SimpleIcon](https://www.flaticon.com/authors/simpleicon) from [FlatIcon](https://www.flaticon.com).
 
-[![Build status](https://ci.appveyor.com/api/projects/status/lsal8vau7s1jw1c7/branch/master?svg=true)](https://ci.appveyor.com/project/Gigas002/omnisharpofflinepackager) [![Actions Status](https://github.com/Gigas002/OmniSharpOfflinePackager/workflows/.NET%20Core/badge.svg)](https://github.com/Gigas002/OmniSharpOfflinePackager/actions) 
+[![Build status](https://ci.appveyor.com/api/projects/status/lsal8vau7s1jw1c7/branch/master?svg=true)](https://ci.appveyor.com/project/Gigas002/omnisharpofflinepackager) [![Actions Status](https://github.com/Gigas002/OmniSharpOfflinePackager/workflows/.NET%20Core/badge.svg)](https://github.com/Gigas002/OmniSharpOfflinePackager/actions)
 
 ## Current version
 
@@ -25,7 +25,7 @@ Previous versions can be found on [releases](https://github.com/Gigas002/OmniSha
 
 ## Dependencies
 
-- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.6.0;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.7.82;
 
 ## Usage
 
